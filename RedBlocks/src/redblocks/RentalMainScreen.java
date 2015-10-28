@@ -18,10 +18,28 @@ public class RentalMainScreen extends javax.swing.JFrame {
         initComponents();
         //Sets the "Welcome <name>" label
         this.workingUser = workingUser;
-        CustomNameLabel.setText(workingUser.getFirstName());
+        CustomNameLabel.setText(workingUser.ProfileInfo().getFirstName());
         
     }
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
