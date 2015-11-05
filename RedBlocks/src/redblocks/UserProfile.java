@@ -5,11 +5,15 @@
  */
 package redblocks;
 
+import java.io.IOException;
+
 /**
  *
  * @author andy
  */
 public class UserProfile {
+    
+    private String UserID;
     private String firstName;
     private String lastName;
     private String email;
@@ -18,6 +22,16 @@ public class UserProfile {
     private String city;
     private String state;
     private String zip;
+    
+    
+    public UserProfile() throws IOException{
+        
+   
+    }
+    
+    public void setUserID(String UserID){
+        this.UserID = UserID;
+    }
     
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -43,6 +57,11 @@ public class UserProfile {
     public void setZip(String zip) {
         this.zip = zip;
     }
+    
+    public String getUserID(){
+        return UserID;
+    }
+    
     public String getFirstName() {
         return firstName;
     }
