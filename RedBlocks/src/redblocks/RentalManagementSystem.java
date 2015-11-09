@@ -71,6 +71,9 @@ public class RentalManagementSystem {
                 // use comma as separator
                 String[] userInfo = line.split(cvsSplitBy);
 
+                String enteredEmail = userInfo[3];
+                String enteredPass = userInfo[4];
+                
                 if(userInfo[3].equals(email)) {
                     if(userInfo[4].equals(password)) {
                         return userInfo[0];
@@ -90,7 +93,6 @@ public class RentalManagementSystem {
                     }
             }
 	}
-        
         return null;
     }
 }

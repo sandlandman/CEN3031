@@ -12,10 +12,7 @@ package redblocks;
 public class LogInScreen extends javax.swing.JFrame {
     private User loggedInUser;
     private RentalManagementSystem system;
-    /**
-     * Creates new form LogInScreen
-     */
-    public LogInScreen() {
+        public LogInScreen() {
         initComponents();
         system = new RentalManagementSystem();
     }
@@ -133,6 +130,7 @@ public class LogInScreen extends javax.swing.JFrame {
             loggedInUser = new User(userInfo);
             //Once the user is created, a rental screen is created using the logged 
             RentalMainScreen mainScreen = new RentalMainScreen(loggedInUser);
+            mainScreen.setVisible(true);
         } else {
             
         }
