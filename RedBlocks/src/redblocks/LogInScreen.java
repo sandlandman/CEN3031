@@ -11,11 +11,13 @@ package redblocks;
  */
 public class LogInScreen extends javax.swing.JFrame {
     private User loggedInUser;
+    private RentalManagementSystem system;
     /**
      * Creates new form LogInScreen
      */
     public LogInScreen() {
         initComponents();
+        system = new RentalManagementSystem();
     }
 
     /**
@@ -27,14 +29,14 @@ public class LogInScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
+        emailTextBox = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        passwordTextBox = new javax.swing.JTextField();
         LogInButton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        SignUpLabel = new javax.swing.JLabel();
+        registerButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,11 +56,10 @@ public class LogInScreen extends javax.swing.JFrame {
 
         jLabel4.setText("Not a member?");
 
-        SignUpLabel.setForeground(new java.awt.Color(51, 51, 255));
-        SignUpLabel.setText("Sign up!");
-        SignUpLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                SignUpLabelMouseClicked(evt);
+        registerButton.setText("Register!");
+        registerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registerButtonActionPerformed(evt);
             }
         });
 
@@ -79,12 +80,12 @@ public class LogInScreen extends javax.swing.JFrame {
                                     .addComponent(jLabel2))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(passwordTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(emailTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(SignUpLabel)
+                        .addComponent(registerButton)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(LogInButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -97,36 +98,51 @@ public class LogInScreen extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(emailTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(passwordTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addComponent(LogInButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(SignUpLabel))
-                .addContainerGap(129, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(registerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap(123, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void SignUpLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SignUpLabelMouseClicked
-        // TODO add your handling code here:
-        RegisterScreen register = new RegisterScreen();
-        register.setVisible(true);
-        
-    }//GEN-LAST:event_SignUpLabelMouseClicked
-
     private void LogInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogInButtonActionPerformed
-        // TODO add your handling code here:
-        loggedInUser = new User();
-        RentalMainScreen main = new RentalMainScreen(loggedInUser);
-        main.setVisible(true);
+
+        //Set email and password variables
+        String email = emailTextBox.getText();
+        String password = passwordTextBox.getText();
+        
+        //system.logIn returns logged in user's ID... That way the next method
+        //can get all of the user's info
+        String loggedInUserID = system.logIn(email,password);
+        //If the userID is null, log in was incorrect
+        if(loggedInUserID != null) {
+            //user ID is passed to getUserInfo, which returns all of the user's
+            //info in a string array
+            String[] userInfo = system.getUserInfo(loggedInUserID);
+            //string array is passed into user's constructor and a new user is created
+            loggedInUser = new User(userInfo);
+            //Once the user is created, a rental screen is created using the logged 
+            RentalMainScreen mainScreen = new RentalMainScreen(loggedInUser);
+        } else {
+            
+        }
     }//GEN-LAST:event_LogInButtonActionPerformed
+
+    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
+
+        RegisterScreen registerScreen = new RegisterScreen();
+        registerScreen.setVisible(true);
+    }//GEN-LAST:event_registerButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -165,12 +181,12 @@ public class LogInScreen extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton LogInButton;
-    private javax.swing.JLabel SignUpLabel;
+    private javax.swing.JTextField emailTextBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField passwordTextBox;
+    private javax.swing.JButton registerButton;
     // End of variables declaration//GEN-END:variables
 }

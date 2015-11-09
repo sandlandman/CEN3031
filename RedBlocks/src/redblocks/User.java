@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package redblocks;
+import java.io.IOException;
 
 /**
  *
@@ -12,10 +13,25 @@ package redblocks;
 public class User {
     private String firstName;
     private UserProfile profile;
+ 
     
-    public User() {
-        profile = new UserProfile();
-    }   
+    public User(String [] str) {
+        try {
+            profile = new UserProfile();
+            profile.setUserID(str[0]);
+            profile.setFirstName(str[1]);
+            profile.setLastName(str[2]);
+            profile.setEmail(str[3]);
+            profile.setPassword(str[4]);
+            profile.setAddress(str[5]);
+            profile.setCity(str[6]);
+            profile.setState(str[7]);
+            profile.setZip(str[8]);
+        } catch(Exception e) {
+            
+        }
+    }
+    
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
