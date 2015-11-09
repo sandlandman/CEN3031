@@ -9,7 +9,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-
+import java.io.*;
 /**
  *
  * @author andy
@@ -22,8 +22,21 @@ public class RentalManagementSystem {
 	
     }
     
-    public void register(String firstName, String last) {
-        
+    public boolean register(String[] userInfo) {
+        try {
+            FileOutputStream fos = new FileOutputStream(csvFile);
+ 
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
+
+            for(int i = 0; i < userInfo.length; i++) {
+                bw.write(userInfo[i]);
+            }
+            bw.newLine();
+            bw.close();
+        } catch(Exception e) {
+            return false;
+        }
+        return true;
     }
     
     public String[] getUserInfo(String loggedInUserID) {

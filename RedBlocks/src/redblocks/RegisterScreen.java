@@ -11,8 +11,6 @@ package redblocks;
  */
 public class RegisterScreen extends javax.swing.JFrame {
     private RentalManagementSystem system;
-
-    
     User registeredUser;
     
     public RegisterScreen() {
@@ -24,8 +22,6 @@ public class RegisterScreen extends javax.swing.JFrame {
         
         return true;
     }
-    
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,7 +38,7 @@ public class RegisterScreen extends javax.swing.JFrame {
         passwordTextBox = new javax.swing.JTextField();
         passwordConfirmTextBox = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        StreetTextBox = new javax.swing.JTextField();
+        streetTextBox = new javax.swing.JTextField();
         cityTextBox = new javax.swing.JTextField();
         stateComboBox = new javax.swing.JComboBox();
         zipTextBox = new javax.swing.JTextField();
@@ -66,10 +62,10 @@ public class RegisterScreen extends javax.swing.JFrame {
 
         jLabel2.setText("Shipping Info");
 
-        StreetTextBox.setText("Street Address");
-        StreetTextBox.addActionListener(new java.awt.event.ActionListener() {
+        streetTextBox.setText("Street Address");
+        streetTextBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                StreetTextBoxActionPerformed(evt);
+                streetTextBoxActionPerformed(evt);
             }
         });
 
@@ -120,7 +116,7 @@ public class RegisterScreen extends javax.swing.JFrame {
                             .addComponent(passwordConfirmTextBox)
                             .addComponent(passwordTextBox)
                             .addComponent(jLabel2)
-                            .addComponent(StreetTextBox))
+                            .addComponent(streetTextBox))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(RegisterButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -145,7 +141,7 @@ public class RegisterScreen extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(StreetTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(streetTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cityTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -163,21 +159,30 @@ public class RegisterScreen extends javax.swing.JFrame {
     private void RegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterButtonActionPerformed
 
         if(textBoxesFilled()) {
-            String[] newUserInfo = {/*TextBoxes*/};
-            RentalMainScreen mainScreen = null;
-            try {
-                mainScreen = new RentalMainScreen(new User(newUserInfo));
-            } catch(Exception e) {
-                
+            String[] newUserInfo = {firstNameTextBox.getText(),
+                lastNameTextBox.getText(),
+                emailTextBox.getText(),
+                passwordTextBox.getText(),
+                streetTextBox.getText(),
+                cityTextBox.getText(),
+                stateComboBox.getSelectedItem().toString(),
+                zipTextBox.getText()};
+            
+            if(system.register(newUserInfo)) {
+                RentalMainScreen mainScreen = null;
+                try {
+                    mainScreen = new RentalMainScreen(new User(newUserInfo));
+                } catch(Exception e) {
+
+                }
+                mainScreen.setVisible(true);
             }
-            mainScreen.setVisible(true);
         }
-        
     }//GEN-LAST:event_RegisterButtonActionPerformed
 
-    private void StreetTextBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StreetTextBoxActionPerformed
+    private void streetTextBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_streetTextBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_StreetTextBoxActionPerformed
+    }//GEN-LAST:event_streetTextBoxActionPerformed
 
     private void backToLogInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToLogInButtonActionPerformed
 
@@ -223,7 +228,6 @@ public class RegisterScreen extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton RegisterButton;
-    private javax.swing.JTextField StreetTextBox;
     private javax.swing.JButton backToLogInButton;
     private javax.swing.JTextField cityTextBox;
     private javax.swing.JTextField emailTextBox;
@@ -234,6 +238,7 @@ public class RegisterScreen extends javax.swing.JFrame {
     private javax.swing.JTextField passwordConfirmTextBox;
     private javax.swing.JTextField passwordTextBox;
     private javax.swing.JComboBox stateComboBox;
+    private javax.swing.JTextField streetTextBox;
     private javax.swing.JTextField zipTextBox;
     // End of variables declaration//GEN-END:variables
 }
