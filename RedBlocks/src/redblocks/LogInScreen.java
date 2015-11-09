@@ -142,6 +142,7 @@ public class LogInScreen extends javax.swing.JFrame {
 
         RegisterScreen registerScreen = new RegisterScreen();
         registerScreen.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_registerButtonActionPerformed
 
     /**

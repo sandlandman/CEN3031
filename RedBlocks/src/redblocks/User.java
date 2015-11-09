@@ -15,10 +15,7 @@ import java.io.IOException;
 public class User {
     private String firstName;
     private UserProfile profile;
-    
-    
-    
-    
+
     public User(String [] str) {
         try {
             profile = new UserProfile();
@@ -32,10 +29,8 @@ public class User {
             profile.setState(str[7]);
             profile.setZip(str[8]);  
         } catch(Exception e) {
-            
+            //This shouldn't be needed once proper textbox checking is implimented into RentalMainScreen()
         }
-            
-       
     }
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -43,8 +38,6 @@ public class User {
     public String getFirstName() {
         return firstName;
     }
-    
-    
     /*
     This is an important method, if you want to set or get profile info from 
     any class besides User, you must go through this method

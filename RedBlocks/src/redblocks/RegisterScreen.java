@@ -47,7 +47,7 @@ public class RegisterScreen extends javax.swing.JFrame {
         stateComboBox = new javax.swing.JComboBox();
         zipTextBox = new javax.swing.JTextField();
         RegisterButton = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        backToLogInButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,7 +86,12 @@ public class RegisterScreen extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Back to log-in");
+        backToLogInButton.setText("Back to log-in!");
+        backToLogInButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backToLogInButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -106,7 +111,7 @@ public class RegisterScreen extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel3))
+                                .addComponent(backToLogInButton))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(firstNameTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -126,7 +131,7 @@ public class RegisterScreen extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel3))
+                    .addComponent(backToLogInButton))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(firstNameTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -165,7 +170,6 @@ public class RegisterScreen extends javax.swing.JFrame {
             } catch(Exception e) {
                 
             }
-            
             mainScreen.setVisible(true);
         }
         
@@ -174,6 +178,13 @@ public class RegisterScreen extends javax.swing.JFrame {
     private void StreetTextBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StreetTextBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_StreetTextBoxActionPerformed
+
+    private void backToLogInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToLogInButtonActionPerformed
+
+        LogInScreen logInScreen = new LogInScreen();
+        logInScreen.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_backToLogInButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -213,12 +224,12 @@ public class RegisterScreen extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton RegisterButton;
     private javax.swing.JTextField StreetTextBox;
+    private javax.swing.JButton backToLogInButton;
     private javax.swing.JTextField cityTextBox;
     private javax.swing.JTextField emailTextBox;
     private javax.swing.JTextField firstNameTextBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField lastNameTextBox;
     private javax.swing.JTextField passwordConfirmTextBox;
     private javax.swing.JTextField passwordTextBox;
