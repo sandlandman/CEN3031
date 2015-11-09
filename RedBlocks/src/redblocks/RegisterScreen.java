@@ -159,7 +159,13 @@ public class RegisterScreen extends javax.swing.JFrame {
 
         if(textBoxesFilled()) {
             String[] newUserInfo = {/*TextBoxes*/};
-            RentalMainScreen mainScreen = new RentalMainScreen(new User(newUserInfo));
+            RentalMainScreen mainScreen = null;
+            try {
+                mainScreen = new RentalMainScreen(new User(newUserInfo));
+            } catch(Exception e) {
+                
+            }
+            
             mainScreen.setVisible(true);
         }
         
