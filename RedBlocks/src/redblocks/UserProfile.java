@@ -6,12 +6,14 @@
 package redblocks;
 
 import java.io.IOException;
+
 /**
  *
  * @author andy
  */
 public class UserProfile {
-     private String UserID;
+    
+    private String UserID;
     private String firstName;
     private String lastName;
     private String email;
@@ -20,12 +22,6 @@ public class UserProfile {
     private String city;
     private String state;
     private String zip;
-    
-    
-    public UserProfile(){
-        
-   
-    }
     
     public void setUserID(String UserID){
         this.UserID = UserID;

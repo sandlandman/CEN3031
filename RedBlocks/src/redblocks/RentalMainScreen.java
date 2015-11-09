@@ -19,7 +19,6 @@ public class RentalMainScreen extends javax.swing.JFrame {
         //Sets the "Welcome <name>" label
         this.workingUser = workingUser;
         CustomNameLabel.setText(workingUser.ProfileInfo().getFirstName());
-        
     }
 
     
