@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.*;
+
 /**
  *
  * @author andy
@@ -17,25 +18,26 @@ import java.io.*;
 public class RentalManagementSystem {
     private String csvFile = "C:\\Users\\andy\\Desktop\\CEN3031\\RedBlocks\\src\\redblocks\\users.csv";
     private boolean validUser;
+    
     private BufferedReader br = null;
     public void read() {
 	
     }
-    
+
     public boolean register(String[] userInfo) {
+        
         try {
-            FileOutputStream fos = new FileOutputStream(csvFile);
- 
-            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
+            BufferedWriter bw = new BufferedWriter(new FileWriter(csvFile, true));
 
             for(int i = 0; i < userInfo.length; i++) {
-                bw.write(userInfo[i]);
+                bw.write(userInfo[i]+",");
             }
             bw.newLine();
             bw.close();
         } catch(Exception e) {
             return false;
         }
+        
         return true;
     }
     

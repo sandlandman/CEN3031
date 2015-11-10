@@ -132,7 +132,7 @@ public class LogInScreen extends javax.swing.JFrame {
             RentalMainScreen mainScreen = new RentalMainScreen(loggedInUser);
             mainScreen.setVisible(true);
         } else {
-            
+            System.out.println("Invalid Login");
         }
     }//GEN-LAST:event_LogInButtonActionPerformed
 

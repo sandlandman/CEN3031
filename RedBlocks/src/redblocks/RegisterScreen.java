@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package redblocks;
-
+import java.util.Random;
 /**
  *
  * @author andy
@@ -12,9 +12,10 @@ package redblocks;
 public class RegisterScreen extends javax.swing.JFrame {
     private RentalManagementSystem system;
     User registeredUser;
-    
+    Random rand = new Random();
     public RegisterScreen() {
         initComponents();
+        system = new RentalManagementSystem();
     }
     
     private boolean textBoxesFilled() {
@@ -71,7 +72,7 @@ public class RegisterScreen extends javax.swing.JFrame {
 
         cityTextBox.setText("City");
 
-        stateComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "State", " " }));
+        stateComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "State", "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming" }));
 
         zipTextBox.setText("Zip");
 
@@ -155,11 +156,16 @@ public class RegisterScreen extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    public String generateUserID() {
+        return String.valueOf(rand.nextInt(9000));
+    }
 
     private void RegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterButtonActionPerformed
 
         if(textBoxesFilled()) {
-            String[] newUserInfo = {firstNameTextBox.getText(),
+            String[] newUserInfo = {
+                String.valueOf(generateUserID()),
+                firstNameTextBox.getText(),
                 lastNameTextBox.getText(),
                 emailTextBox.getText(),
                 passwordTextBox.getText(),
@@ -176,6 +182,8 @@ public class RegisterScreen extends javax.swing.JFrame {
 
                 }
                 mainScreen.setVisible(true);
+            }else {
+                System.out.println("Invalid");
             }
         }
     }//GEN-LAST:event_RegisterButtonActionPerformed

@@ -38,6 +38,7 @@ public class User {
     public String getFirstName() {
         return firstName;
     }
+    
     /*
     This is an important method, if you want to set or get profile info from 
     any class besides User, you must go through this method

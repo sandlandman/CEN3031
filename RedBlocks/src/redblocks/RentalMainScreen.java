@@ -73,7 +73,6 @@ public class RentalMainScreen extends javax.swing.JFrame {
         jLabel1.setText("Welcome");
 
         CustomNameLabel.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        CustomNameLabel.setText("Andy");
         CustomNameLabel.setToolTipText("");
 
         jLabel3.setText("Filter");
@@ -114,7 +113,7 @@ public class RentalMainScreen extends javax.swing.JFrame {
                                 .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 76, Short.MAX_VALUE))
+                                .addGap(0, 136, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel5)
